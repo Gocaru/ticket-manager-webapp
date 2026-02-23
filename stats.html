@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estatísticas — TicketOS</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="navbar__brand">
+      <span class="dot"></span>
+      TicketOS
+    </a>
+    <button class="navbar__toggle" aria-label="Menu" aria-expanded="false">☰</button>
+    <ul class="navbar__links">
+      <li><a href="index.html">Tickets</a></li>
+      <li><a href="stats.html">Estatísticas</a></li>
+      <li><a href="about.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <div class="page-header">
+      <div>
+        <h1>Estatísticas</h1>
+        <p class="page-header__sub">Dashboard de indicadores em tempo real</p>
+      </div>
+      <button class="btn btn--ghost" id="btn-refresh">↺ Atualizar</button>
+    </div>
+
+    <!-- Cards de totais -->
+    <section class="about-section">
+      <h2>Resumo Geral</h2>
+      <div class="stats-grid" id="summary-cards">
+        <div class="loading"><div class="spinner"></div><span>A carregar...</span></div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- Pie charts -->
+    <section class="about-section">
+      <h2>Distribuição</h2>
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Por Estado</h3>
+          <canvas id="chart-status" width="200" height="200"></canvas>
+          <ul class="chart-legend" id="legend-status"></ul>
+        </div>
+        <div class="chart-card">
+          <h3>Por Prioridade</h3>
+          <canvas id="chart-priority" width="200" height="200"></canvas>
+          <ul class="chart-legend" id="legend-priority"></ul>
+        </div>
+        <div class="chart-card">
+          <h3>Por Categoria CI</h3>
+          <canvas id="chart-cicat" width="200" height="200"></canvas>
+          <ul class="chart-legend" id="legend-cicat"></ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025/2026 UPskill — Faculdade de Ciências · Módulo 10 Projeto Final</p>
+  </footer>
+
+  <script type="module" src="js/stats.js"></script>
+</body>
+</html>
