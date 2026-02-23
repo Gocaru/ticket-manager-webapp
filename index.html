@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestor de Tickets</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar__brand">
+      <span class="dot"></span>
+      TicketOS
+    </a>
+    <button class="navbar__toggle" aria-label="Menu" aria-expanded="false">☰</button>
+    <ul class="navbar__links">
+      <li><a href="index.html">Tickets</a></li>
+      <li><a href="stats.html">Estatísticas</a></li>
+      <li><a href="about.html">Sobre</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ MAIN ════════════════════════════════════════════ -->
+  <main>
+
+    <!-- Cabeçalho da página -->
+    <div class="page-header">
+      <div>
+        <h1>Gestor de Tickets</h1>
+        <p class="page-header__sub">Gestão centralizada de incidências</p>
+      </div>
+      <button class="btn btn--primary" id="btn-new-ticket">+ Novo Ticket</button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filters-bar">
+      <div class="form-group" style="margin:0">
+        <label for="filter-status">Estado</label>
+        <select id="filter-status">
+          <option value="">Todos</option>
+          <option value="open">Aberto</option>
+          <option value="in_progress">Em Progresso</option>
+          <option value="closed">Fechado</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label for="filter-priority">Prioridade</label>
+        <select id="filter-priority">
+          <option value="">Todas</option>
+          <option value="low">Baixa</option>
+          <option value="medium">Média</option>
+          <option value="high">Alta</option>
+          <option value="critical">Crítica</option>
+        </select>
+      </div>
+      <button class="btn btn--ghost" id="btn-filter">Filtrar</button>
+      <button class="btn btn--ghost" id="btn-reset">↺ Limpar</button>
+    </div>
+
+    <!-- Lista de tickets -->
+    <div id="tickets-container">
+      <div class="loading">
+        <div class="spinner"></div>
+        <span>A carregar tickets...</span>
+      </div>
+    </div>
+
+    <!-- Paginação -->
+    <div id="pagination" style="display:flex;gap:.5rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;"></div>
+
+  </main>
+
+  <!-- ══ FOOTER ══════════════════════════════════════════ -->
+  <footer>
+    <p>© 2025/2026 UPskill — Faculdade de Ciências · Módulo 10 Projeto Final</p>
+  </footer>
+
+  <!-- ══ MODAL de Criar/Editar ═══════════════════════════ -->
+  <div id="ticket-modal-container"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/index.js"></script>
+</body>
+</html>
