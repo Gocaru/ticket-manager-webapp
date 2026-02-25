@@ -44,7 +44,7 @@ function renderSummary(statusData) {
 
   document.getElementById('summary-cards').innerHTML = `
     <div class="stat-card">
-      <div class="stat-card__value" style="color:var(--accent)">${total}</div>
+      <div class="stat-card__value" style="color:var(--total)">${total}</div>
       <div class="stat-card__label">Total Tickets</div>
     </div>
     <div class="stat-card">
