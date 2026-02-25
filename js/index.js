@@ -8,7 +8,7 @@ import { showToast, showLoading, showEmpty, statusBadge, formatDate, openModal, 
 
 let currentFilters = {};
 let currentOffset  = 0;
-const LIMIT = 20;
+const LIMIT = 5;
 
 document.addEventListener('DOMContentLoaded', () => {
   setNavActive();
