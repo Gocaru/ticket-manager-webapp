@@ -8,7 +8,30 @@ import { showToast, showLoading, showEmpty, statusBadge, formatDate, openModal, 
 
 let currentFilters = {};
 let currentOffset  = 0;
-const LIMIT = 5;
+function calcLimit() {
+  const rowHeight    = 52;  // altura aproximada de cada linha da tabela
+  const usedHeight   = 390; // navbar + header + filtros + paginação + footer
+  const available    = window.innerHeight - usedHeight;
+  const rows         = Math.floor(available / rowHeight);
+  return Math.max(5, Math.min(rows, 20)); // mínimo 5, máximo 20
+}
+
+let LIMIT = calcLimit();
+
+function bindEvents() {
+  document.getElementById('btn-new-ticket').addEventListener('click', () => openTicketModal(null));
+  document.getElementById('btn-filter').addEventListener('click', applyFilters);
+  document.getElementById('btn-reset').addEventListener('click', resetFilters);
+
+  // Recalcula o limite quando a janela muda de tamanho
+  window.addEventListener('resize', () => {
+    const newLimit = calcLimit();
+    if (newLimit !== LIMIT) {
+      LIMIT = newLimit;
+      loadTickets(currentFilters, 0);
+    }
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   setNavActive();
@@ -17,11 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
   bindEvents();
 });
 
-function bindEvents() {
-  document.getElementById('btn-new-ticket').addEventListener('click', () => openTicketModal(null));
-  document.getElementById('btn-filter').addEventListener('click', applyFilters);
-  document.getElementById('btn-reset').addEventListener('click', resetFilters);
-}
 
 async function loadTickets(filters = {}, offset = 0) {
   const container = document.getElementById('tickets-container');
@@ -175,16 +193,6 @@ function openTicketModal(existingTicket) {
           </select>
         </div>
         <div class="form-group">
-          <label for="f-priority">Prioridade</label>
-          <select id="f-priority">
-            <option value="1" ${sel(curPriority,'1')}>1 — Crítica</option>
-            <option value="2" ${sel(curPriority,'2')}>2 — Alta</option>
-            <option value="3" ${sel(curPriority,'3')}>3 — Média</option>
-            <option value="4" ${sel(curPriority,'4')}>4 — Baixa</option>
-            <option value="5" ${sel(curPriority,'5')}>5 — Muito Baixa</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label for="f-impact">Impacto</label>
           <select id="f-impact">
             <option value="1" ${sel(curImpact,'1')}>1 — Alto</option>
@@ -224,9 +232,9 @@ async function handleSubmit(isEdit, ticketId) {
   const ciCat    = document.getElementById('f-cicat').value.trim();
   const ciSubcat = document.getElementById('f-cisubcat').value.trim();
   const status   = document.getElementById('f-status').value;
-  const priority = document.getElementById('f-priority').value;
   const impact   = document.getElementById('f-impact').value;
   const urgency  = document.getElementById('f-urgency').value;
+  const priority = String(Math.ceil((parseInt(impact) + parseInt(urgency)) / 2));
   const errorEl  = document.getElementById('form-error');
 
   if (!ciName || ciName.length < 3) {

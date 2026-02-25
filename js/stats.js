@@ -6,8 +6,8 @@ import { getStatsByStatus, getStatsByPriority, getStatsByCiCat } from './api.js'
 import { showToast, setNavActive, initNavbarToggle } from './ui.js';
 
 const PALETTE = [
-  '#5b8dee', '#3dd68c', '#f5a623', '#e05b8d', '#e07a5b',
-  '#a78bfa', '#34d399', '#fbbf24', '#f87171', '#60a5fa',
+  '#E69F00', '#56B4E9', '#009E73', '#F0E442',
+  '#0072B2', '#D55E00', '#CC79A7', '#000000',
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -147,7 +147,11 @@ function statusLabel(v) {
 }
 
 function statusColor(v) {
-  return { open: '#3dd68c', in_progress: '#5b8dee', closed: '#6b7280' }[v] || '#5b8dee';
+  return {
+    open:        '#009E73', // verde esmeralda
+    in_progress: '#0072B2', // azul escuro
+    closed:      '#D55E00', // laranja avermelhado
+  }[v] || '#56B4E9';
 }
 
 function priorityLabel(v) {

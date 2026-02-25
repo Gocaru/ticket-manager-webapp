@@ -28,10 +28,10 @@
   --muted:    #8b95b0;   /* cinza médio → contraste ≥4.5:1 sobre --bg */
 
   /* Status — ajustados para contraste ≥4.5:1 */
-  --total:      #2066dd;   
-  --open:       #4ade80;   
-  --inprogress: #fbbf24;   
-  --closed:     #f87171;   
+  --total:      #a78bfa;   /* violeta */
+  --open:       #4ade80;   /* verde */
+  --inprogress: #6b9fff;   /* azul */
+  --closed:     #8b95b0;   /* cinza */
 
   /* Prioridade — ajustados para contraste ≥4.5:1 */
   --low:      #4ade80;
@@ -55,10 +55,10 @@
 
 /* Tema claro — contraste WCAG AA/AAA */
 body.light-mode {
-  --bg:       #f8f9fc;   /* quase branco com tonalidade fria */
-  --surface:  #ffffff;
-  --surface2: #edf0f7;
-  --border:   #c5cce0;   /* mais escuro que antes → contraste ≥3:1 sobre surface */
+  --bg:       #f5f0eb;   /* bege/creme */
+  --surface:  #faf7f3;   /* bege mais claro — cards e navbar */
+  --surface2: #ede8e1;   /* bege médio — hover e inputs */
+  --border:   #d4cdc4;   /* bege escuro — bordas */
   --text:     #0f1623;   /* quase preto → contraste ~18:1 sobre --bg */
   --muted:    #4a5568;   /* cinza escuro → contraste ≥7:1 sobre --bg */
   --accent:   #1d4ed8;   /* azul escuro → contraste ~8:1 sobre branco */
@@ -66,10 +66,10 @@ body.light-mode {
   --success:  #166534;   /* verde escuro → contraste ~8:1 */
   --warning:  #92400e;   /* âmbar escuro → contraste ~8:1 */
   --danger:   #991b1b;   /* vermelho escuro → contraste ~8:1 */
-  --total:       #2066dd;   /* violeta escuro → contraste ≥7:1 sobre branco */
+  --total:      #0e7490;   /* ciano escuro → claramente distinto de azul, verde e cinza */
   --open:       #166534;
-  --inprogress: #fbbf24;   
-  --closed:     #f87171;   
+  --inprogress: #1d4ed8;
+  --closed:     #4a5568;
   --low:        #166534;
   --medium:     #92400e;
   --high:       #c2410c;
@@ -115,7 +115,7 @@ img, svg {
 .navbar {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 0 1.25rem;
+  padding: 0 1.3rem;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -222,11 +222,13 @@ footer {
   background: var(--surface);
   border-top: 1px solid var(--border);
   text-align: center;
-  padding: .25rem 1.25rem;
-  font-size: .8rem;
+  padding: .5rem 1.25rem;
+  font-size: .75rem;
   color: var(--muted);
   font-family: var(--font-mono);
 }
+
+footer p { margin: 0; }
 
 /* ============================================================
    TIPOGRAFIA
@@ -925,7 +927,14 @@ textarea.invalid {
   }
 
   .filters-bar select { width: auto; min-width: 130px; }
-  .filters-bar .btn   { align-self: flex-end; }
+  .filters-bar .btn { align-self: flex-end; min-width: 90px; justify-content: center; }
+
+.filters-bar__actions {
+  display: flex;
+  gap: .5rem;
+  align-self: flex-end;
+  margin-left: auto;
+}
 
   /* Page header em linha */
   .page-header {

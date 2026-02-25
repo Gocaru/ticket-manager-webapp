@@ -1,81 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gestor de Tickets</title>
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestor de Tickets</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="index.html" class="navbar__brand">
+        <span class="dot"></span>
+        TicketOS
+      </a>
+      <button class="navbar__toggle" aria-label="Menu" aria-expanded="false">
+        ☰
+      </button>
+      <ul class="navbar__links">
+        <li><a href="index.html">Tickets</a></li>
+        <li><a href="stats.html">Estatísticas</a></li>
+        <li><a href="about.html">Sobre</a></li>
+        <li>
+          <button
+            id="theme-toggle"
+            class="btn btn--ghost btn--sm"
+            aria-label="Alternar tema"
+          >
+            ☀️
+          </button>
+        </li>
+      </ul>
+    </nav>
 
-  <nav class="navbar">
-    <a href="index.html" class="navbar__brand">
-      <span class="dot"></span>
-      TicketOS
-    </a>
-    <button class="navbar__toggle" aria-label="Menu" aria-expanded="false">☰</button>
-    <ul class="navbar__links">
-      <li><a href="index.html">Tickets</a></li>
-      <li><a href="stats.html">Estatísticas</a></li>
-      <li><a href="about.html">Sobre</a></li>
-      <li>
-        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Alternar tema">
-          ☀️
+    <main>
+      <div class="page-header">
+        <div>
+          <h1>Gestor de Tickets</h1>
+          <p class="page-header__sub">Gestão centralizada de incidências</p>
+        </div>
+        <button class="btn btn--primary" id="btn-new-ticket">
+          + Novo Ticket
         </button>
-      </li>
-    </ul>
-  </nav>
-
-  <main>
-    <div class="page-header">
-      <div>
-        <h1>Gestor de Tickets</h1>
-        <p class="page-header__sub">Gestão centralizada de incidências</p>
       </div>
-      <button class="btn btn--primary" id="btn-new-ticket">+ Novo Ticket</button>
-    </div>
 
-    <div class="filters-bar">
-      <div class="form-group" style="margin:0">
-        <label for="filter-status">Estado</label>
-        <select id="filter-status">
-          <option value="">Todos</option>
-          <option value="open">Aberto</option>
-          <option value="in_progress">Em Progresso</option>
-          <option value="closed">Fechado</option>
-        </select>
+      <div class="filters-bar">
+        <div class="form-group" style="margin: 0">
+          <label for="filter-status">Estado</label>
+          <select id="filter-status">
+            <option value="">Todos</option>
+            <option value="open">Aberto</option>
+            <option value="in_progress">Em Progresso</option>
+            <option value="closed">Fechado</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin: 0">
+          <label for="filter-priority">Prioridade</label>
+          <select id="filter-priority">
+            <option value="">Todas</option>
+            <option value="1">Crítica</option>
+            <option value="2">Alta</option>
+            <option value="3">Média</option>
+            <option value="4">Baixa</option>
+            <option value="5">Muito Baixa</option>
+          </select>
+        </div>
+        <div class="filters-bar__actions">
+          <button class="btn btn--primary" id="btn-filter">Filtrar</button>
+          <button class="btn btn--ghost" id="btn-reset">
+            <span style="font-size: 1.3rem; line-height: 1; display: inline-block" >↺</span>Limpar
+          </button>
+        </div>
       </div>
-      <div class="form-group" style="margin:0">
-        <label for="filter-priority">Prioridade</label>
-        <select id="filter-priority">
-          <option value="">Todas</option>
-          <option value="low">Baixa</option>
-          <option value="medium">Média</option>
-          <option value="high">Alta</option>
-          <option value="critical">Crítica</option>
-        </select>
+
+      <div id="tickets-container">
+        <div class="loading">
+          <div class="spinner"></div>
+          <span>A carregar tickets...</span>
+        </div>
       </div>
-      <button class="btn btn--ghost" id="btn-filter">Filtrar</button>
-      <button class="btn btn--ghost" id="btn-reset">↺ Limpar</button>
-    </div>
 
-    <div id="tickets-container">
-      <div class="loading">
-        <div class="spinner"></div>
-        <span>A carregar tickets...</span>
-      </div>
-    </div>
+      <div
+        id="pagination"
+        style="
+          display: flex;
+          gap: 0.5rem;
+          justify-content: center;
+          margin-top: 1.5rem;
+          flex-wrap: wrap;
+        "
+      ></div>
+    </main>
 
-    <div id="pagination" style="display:flex;gap:.5rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;"></div>
-  </main>
+    <footer>
+      <p>
+        © <span id="footer-year"></span> UPskill — Faculdade de Ciências ·
+        Módulo 10 Projeto Final
+      </p>
+    </footer>
 
-  <footer>
-    <p>© 2025/2026 UPskill — Faculdade de Ciências · Módulo 10 Projeto Final</p>
-  </footer>
+    <div id="ticket-modal-container"></div>
 
-  <div id="ticket-modal-container"></div>
-
-  <script src="js/theme.js"></script>
-  <script type="module" src="js/index.js"></script>
-</body>
+    <script src="js/theme.js"></script>
+    <script type="module" src="js/index.js"></script>
+    <script>
+      document.getElementById("footer-year").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
 </html>
