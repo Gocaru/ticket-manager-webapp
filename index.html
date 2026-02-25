@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- ══ NAVBAR ══════════════════════════════════════════ -->
   <nav class="navbar">
     <a href="index.html" class="navbar__brand">
       <span class="dot"></span>
@@ -19,13 +18,15 @@
       <li><a href="index.html">Tickets</a></li>
       <li><a href="stats.html">Estatísticas</a></li>
       <li><a href="about.html">Sobre</a></li>
+      <li>
+        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Alternar tema">
+          ☀️
+        </button>
+      </li>
     </ul>
   </nav>
 
-  <!-- ══ MAIN ════════════════════════════════════════════ -->
   <main>
-
-    <!-- Cabeçalho da página -->
     <div class="page-header">
       <div>
         <h1>Gestor de Tickets</h1>
@@ -34,7 +35,6 @@
       <button class="btn btn--primary" id="btn-new-ticket">+ Novo Ticket</button>
     </div>
 
-    <!-- Filtros -->
     <div class="filters-bar">
       <div class="form-group" style="margin:0">
         <label for="filter-status">Estado</label>
@@ -59,7 +59,6 @@
       <button class="btn btn--ghost" id="btn-reset">↺ Limpar</button>
     </div>
 
-    <!-- Lista de tickets -->
     <div id="tickets-container">
       <div class="loading">
         <div class="spinner"></div>
@@ -67,20 +66,16 @@
       </div>
     </div>
 
-    <!-- Paginação -->
     <div id="pagination" style="display:flex;gap:.5rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap;"></div>
-
   </main>
 
-  <!-- ══ FOOTER ══════════════════════════════════════════ -->
   <footer>
     <p>© 2025/2026 UPskill — Faculdade de Ciências · Módulo 10 Projeto Final</p>
   </footer>
 
-  <!-- ══ MODAL de Criar/Editar ═══════════════════════════ -->
   <div id="ticket-modal-container"></div>
 
-  <!-- Scripts -->
+  <script src="js/theme.js"></script>
   <script type="module" src="js/index.js"></script>
 </body>
 </html>

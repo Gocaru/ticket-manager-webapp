@@ -18,6 +18,11 @@
       <li><a href="index.html">Tickets</a></li>
       <li><a href="stats.html">Estatísticas</a></li>
       <li><a href="about.html">Sobre</a></li>
+      <li>
+        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Alternar tema">
+          ☀️
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -37,22 +42,22 @@
         <div class="member-card">
           <div class="member-avatar">GR</div>
           <div class="member-name">Gonçalo Russo</div>
-          <div class="member-role">Backend &amp; API</div>
+          <div class="member-role">Backend & API</div>
         </div>
         <div class="member-card">
           <div class="member-avatar" style="background:var(--accent2)">LS</div>
           <div class="member-name">Larissa Silva</div>
-          <div class="member-role">Frontend &amp; UI</div>
+          <div class="member-role">Frontend & UI</div>
         </div>
         <div class="member-card">
           <div class="member-avatar" style="background:var(--success)">FV</div>
           <div class="member-name">Filipa Veiga</div>
-          <div class="member-role">Base de Dados &amp; Testes</div>
+          <div class="member-role">Base de Dados & Testes</div>
         </div>
         <div class="member-card">
           <div class="member-avatar" style="background:var(--warning);color:#111">FN</div>
           <div class="member-name">Filipe Nunes</div>
-          <div class="member-role">Integração &amp; Webhooks</div>
+          <div class="member-role">Integração & Webhooks</div>
         </div>
       </div>
     </section>
@@ -64,7 +69,7 @@
       <p style="color:var(--muted);line-height:1.8">
         O <strong style="color:var(--text)">TicketOS</strong> é uma aplicação web de gestão de tickets de suporte IT,
         desenvolvida no âmbito do <strong style="color:var(--text)">Módulo 10 — Projeto Final</strong> do programa
-        UPskill / Digital SKILLS &amp; JOBS da Faculdade de Ciências da Universidade de Lisboa.
+        UPskill / Digital SKILLS & JOBS da Faculdade de Ciências da Universidade de Lisboa.
       </p>
       <p style="color:var(--muted);line-height:1.8;margin-top:.8rem">
         A aplicação permite criar, visualizar, editar e arquivar tickets de suporte,
@@ -99,19 +104,31 @@
       <ul style="list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem">
         <li style="display:flex;gap:.7rem;align-items:flex-start">
           <span style="color:var(--accent);font-weight:800;flex-shrink:0">01</span>
-          <span style="color:var(--muted)"><strong style="color:var(--text)">CORS entre ficheiros locais e API</strong> — ao abrir as páginas via <code style="background:var(--surface2);padding:.1rem .4rem;border-radius:4px">file://</code>, o browser bloqueava pedidos à API. Resolvido configurando a política de CORS no <code style="background:var(--surface2);padding:.1rem .4rem;border-radius:4px">app.js</code>.</span>
+          <span style="color:var(--muted)">
+            <strong style="color:var(--text)">CORS entre ficheiros locais e API</strong> —
+            o browser bloqueava pedidos à API. Resolvido configurando a política de CORS no backend.
+          </span>
         </li>
         <li style="display:flex;gap:.7rem;align-items:flex-start">
           <span style="color:var(--accent);font-weight:800;flex-shrink:0">02</span>
-          <span style="color:var(--muted)"><strong style="color:var(--text)">Parsing do CSV</strong> — o ficheiro CSV original tinha as linhas envolvidas em aspas duplas externas, o que impedia o parser de separar os campos correctamente.</span>
+          <span style="color:var(--muted)">
+            <strong style="color:var(--text)">Parsing do CSV</strong> —
+            tratamento de formatação irregular nas linhas.
+          </span>
         </li>
         <li style="display:flex;gap:.7rem;align-items:flex-start">
           <span style="color:var(--accent);font-weight:800;flex-shrink:0">03</span>
-          <span style="color:var(--muted)"><strong style="color:var(--text)">Manipulação do DOM sem frameworks</strong> — construir componentes reutilizáveis (modal, toast, gráficos) sem React ou qualquer biblioteca foi o maior desafio.</span>
+          <span style="color:var(--muted)">
+            <strong style="color:var(--text)">Manipulação do DOM sem frameworks</strong> —
+            criação manual de componentes reutilizáveis.
+          </span>
         </li>
         <li style="display:flex;gap:.7rem;align-items:flex-start">
           <span style="color:var(--accent);font-weight:800;flex-shrink:0">04</span>
-          <span style="color:var(--muted)"><strong style="color:var(--text)">Sincronização de estado</strong> — após criar, editar ou apagar tickets, actualizar a lista mantendo os filtros activos exigiu atenção à gestão de estado.</span>
+          <span style="color:var(--muted)">
+            <strong style="color:var(--text)">Sincronização de estado</strong> —
+            atualização da lista mantendo filtros activos.
+          </span>
         </li>
       </ul>
     </section>
@@ -122,6 +139,7 @@
     <p>© 2025/2026 UPskill — Faculdade de Ciências · Módulo 10 Projeto Final</p>
   </footer>
 
+  <script src="js/theme.js"></script>
   <script type="module" src="js/about.js"></script>
 </body>
 </html>

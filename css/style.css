@@ -709,3 +709,18 @@ textarea { resize: vertical; min-height: 80px; }
 
 .chart-legend__label { flex: 1; color: var(--muted); }
 .chart-legend__value { font-weight: 700; font-family: 'Space Mono', monospace; font-size: .78rem; }
+
+
+body.light-mode {
+  --bg:       #f4f6fb;
+  --surface:  #ffffff;
+  --surface2: #eef1f7;
+  --border:   #d9deea;
+  --text:     #111827;
+  --muted:    #6b7280;
+
+  --accent:   #2563eb;
+  --accent2:  #db2777;
+
+  --shadow:   0 4px 18px rgba(0,0,0,.08);
+}
