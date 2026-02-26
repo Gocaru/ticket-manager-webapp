@@ -79,7 +79,7 @@ export function showEmpty(el, message = 'Nenhum resultado encontrado.') {
  * @param {string} status
  */
 export function statusBadge(status) {
-  const label = { open: 'Aberto', in_progress: 'Em progresso', closed: 'Fechado' };
+  const label = { open: 'Aberto', in_progress: 'Em progresso', closed: 'Fechado', archived: 'Arquivado' };
   const cls   = status === 'in_progress' ? 'inprogress' : status;
   return `<span class="badge badge--${cls}">${label[status] || status}</span>`;
 }

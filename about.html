@@ -74,87 +74,115 @@
       </div>
     </section>
 
-    <hr class="divider" />
+    <!-- Accordion para os restantes 3 -->
+    <div class="accordion">
 
-    <!-- Sobre o projeto -->
-    <section class="about-section card">
-      <h2>📋 Sobre o Projeto</h2>
-      <p style="color:var(--muted);line-height:1.8">
-        O <strong style="color:var(--text)">TicketOS</strong> é uma aplicação web de gestão de tickets de suporte IT,
-        desenvolvida no âmbito do <strong style="color:var(--text)">Módulo 10 — Projeto Final</strong> do programa
-        UPskill / Digital SKILLS &amp; JOBS da Faculdade de Ciências da Universidade de Lisboa.
-      </p>
-      <p style="color:var(--muted);line-height:1.8;margin-top:.8rem">
-        A aplicação permite criar, visualizar, editar e arquivar tickets de suporte,
-        com filtragem por estado e prioridade, dashboard de estatísticas em tempo real e
-        comunicação assíncrona com a API REST construída no Módulo 8.
-      </p>
-    </section>
+      <div class="accordion-item">
+        <button class="accordion-btn" data-accordion="projeto" type="button">
+          📋 Sobre o Projeto
+          <span class="accordion-icon">▼</span>
+        </button>
+        <div class="accordion-body" id="accordion-projeto">
+          <p style="color:var(--muted);line-height:1.8">
+            O <strong style="color:var(--text)">TicketOS</strong> é uma aplicação web de gestão de tickets de suporte IT,
+            desenvolvida no âmbito do <strong style="color:var(--text)">Módulo 10 — Projeto Final</strong> do programa
+            UPskill / Digital SKILLS &amp; JOBS da Faculdade de Ciências da Universidade de Lisboa.
+          </p>
+          <p style="color:var(--muted);line-height:1.8;margin-top:.8rem">
+            A aplicação permite criar, visualizar, editar e arquivar tickets de suporte,
+            com filtragem por estado e prioridade, dashboard de estatísticas em tempo real e
+            comunicação assíncrona com a API REST construída no Módulo 8.
+          </p>
+        </div>
+      </div>
 
-    <hr class="divider" />
+      <div class="accordion-item">
+        <button class="accordion-btn" data-accordion="tecnologias" type="button">
+          🛠 Tecnologias Utilizadas
+          <span class="accordion-icon">▼</span>
+        </button>
+        <div class="accordion-body" id="accordion-tecnologias">
+          <ul class="tech-tags">
+            <li class="tech-tag">HTML5</li>
+            <li class="tech-tag">CSS3</li>
+            <li class="tech-tag">JavaScript (ES Modules)</li>
+            <li class="tech-tag">Fetch API / AJAX</li>
+            <li class="tech-tag">async / await</li>
+            <li class="tech-tag">Node.js</li>
+            <li class="tech-tag">Express.js</li>
+            <li class="tech-tag">SQLite</li>
+            <li class="tech-tag">REST API</li>
+            <li class="tech-tag">Canvas API (gráficos)</li>
+            <li class="tech-tag">Google Fonts</li>
+          </ul>
+        </div>
+      </div>
 
-    <!-- Tecnologias -->
-    <section class="about-section card">
-      <h2>🛠 Tecnologias Utilizadas</h2>
-      <ul class="tech-tags" style="margin-top:.5rem">
-        <li class="tech-tag">HTML5</li>
-        <li class="tech-tag">CSS3</li>
-        <li class="tech-tag">JavaScript (ES Modules)</li>
-        <li class="tech-tag">Fetch API / AJAX</li>
-        <li class="tech-tag">async / await</li>
-        <li class="tech-tag">Node.js</li>
-        <li class="tech-tag">Express.js</li>
-        <li class="tech-tag">SQLite</li>
-        <li class="tech-tag">REST API</li>
-        <li class="tech-tag">Canvas API (gráficos)</li>
-      </ul>
-    </section>
+      <div class="accordion-item">
+        <button class="accordion-btn" data-accordion="dificuldades" type="button">
+          ⚠ Dificuldades Sentidas
+          <span class="accordion-icon">▼</span>
+        </button>
+        <div class="accordion-body" id="accordion-dificuldades">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.7rem">
+            <li style="display:flex;gap:.7rem;align-items:flex-start">
+              <span style="color:var(--accent);font-weight:800;flex-shrink:0">01</span>
+              <span style="color:var(--muted)">
+                <strong style="color:var(--text)">Responsividade</strong> —
+                adaptar o layout para mobile e desktop sem quebras visuais, especialmente a navbar e a tabela de tickets.
+              </span>
+            </li>
+            <li style="display:flex;gap:.7rem;align-items:flex-start">
+              <span style="color:var(--accent);font-weight:800;flex-shrink:0">02</span>
+              <span style="color:var(--muted)">
+                <strong style="color:var(--text)">Chamadas AJAX e async/await</strong> —
+                gerir o fluxo assíncrono e garantir que a interface atualiza corretamente após cada operação.
+              </span>
+            </li>
+            <li style="display:flex;gap:.7rem;align-items:flex-start">
+              <span style="color:var(--accent);font-weight:800;flex-shrink:0">03</span>
+              <span style="color:var(--muted)">
+                <strong style="color:var(--text)">Manipulação do DOM</strong> —
+                criar, atualizar e remover elementos dinamicamente sem o auxílio de frameworks como React ou Vue.
+              </span>
+            </li>
+            <li style="display:flex;gap:.7rem;align-items:flex-start">
+              <span style="color:var(--accent);font-weight:800;flex-shrink:0">04</span>
+              <span style="color:var(--muted)">
+                <strong style="color:var(--text)">Validação de formulários</strong> —
+                implementar validação no lado do cliente com feedback visual claro para o utilizador.
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    <hr class="divider" />
-
-    <!-- Dificuldades -->
-    <section class="about-section card">
-      <h2>⚠ Dificuldades Sentidas</h2>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem">
-        <li style="display:flex;gap:.7rem;align-items:flex-start">
-          <span style="color:var(--accent);font-weight:800;flex-shrink:0">01</span>
-          <span style="color:var(--muted)">
-            <strong style="color:var(--text)">CORS entre ficheiros locais e API</strong> —
-            o browser bloqueava pedidos à API. Resolvido configurando a política de CORS no backend.
-          </span>
-        </li>
-        <li style="display:flex;gap:.7rem;align-items:flex-start">
-          <span style="color:var(--accent);font-weight:800;flex-shrink:0">02</span>
-          <span style="color:var(--muted)">
-            <strong style="color:var(--text)">Parsing do CSV</strong> —
-            tratamento de formatação irregular nas linhas.
-          </span>
-        </li>
-        <li style="display:flex;gap:.7rem;align-items:flex-start">
-          <span style="color:var(--accent);font-weight:800;flex-shrink:0">03</span>
-          <span style="color:var(--muted)">
-            <strong style="color:var(--text)">Manipulação do DOM sem frameworks</strong> —
-            criação manual de componentes reutilizáveis.
-          </span>
-        </li>
-        <li style="display:flex;gap:.7rem;align-items:flex-start">
-          <span style="color:var(--accent);font-weight:800;flex-shrink:0">04</span>
-          <span style="color:var(--muted)">
-            <strong style="color:var(--text)">Sincronização de estado</strong> —
-            atualização da lista mantendo filtros activos.
-          </span>
-        </li>
-      </ul>
-    </section>
+    </div>
 
   </main>
 
   <footer>
-    <p>© 2025/2026 UPskill — Faculdade de Ciências · Módulo 10 Projeto Final</p>
+    <p>© <span id="footer-year"></span> UPskill — Faculdade de Ciências · Módulo 10 Projeto Final</p>
   </footer>
 
   <script src="js/theme.js"></script>
   <script type="module" src="js/about.js"></script>
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const body = document.getElementById('accordion-' + btn.dataset.accordion);
+        const isOpen = body.classList.contains('open');
+        document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.accordion-btn').forEach(b => b.classList.remove('active'));
+        if (!isOpen) {
+          body.classList.add('open');
+          btn.classList.add('active');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
