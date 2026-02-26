@@ -2,8 +2,8 @@
  * stats.js — Dashboard de estatísticas com pie charts via Canvas API
  */
 
-import { getStatsByStatus, getStatsByPriority, getStatsByCiCat } from './api.js';
-import { showToast, setNavActive, initNavbarToggle } from './ui.js';
+import { getStatsByStatus, getStatsByPriority, getStatsByCiCat, getRecentTickets } from './api.js';
+import { showToast, setNavActive, initNavbarToggle, formatDate } from './ui.js';
 
 const PALETTE = [
   '#E69F00', '#56B4E9', '#009E73', '#F0E442',
@@ -19,16 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadAll() {
   try {
-    const [statusData, priorityData, cicatData] = await Promise.all([
+    const [statusData, priorityData, cicatData, recentData] = await Promise.all([
       getStatsByStatus(),
       getStatsByPriority(),
       getStatsByCiCat(),
+      getRecentTickets(7),
     ]);
 
     renderSummary(statusData);
     drawPie('chart-status',   'legend-status',   statusData,          'status',   statusLabel,   statusColor);
     drawPie('chart-priority', 'legend-priority', priorityData,        'priority', priorityLabel, null);
     drawPie('chart-cicat',    'legend-cicat',    cicatData.slice(0,6),'ciCat',    v => v,        null);
+    renderRecentTickets(recentData);
 
   } catch (err) {
     showToast('Erro ao carregar estatísticas: ' + err.message, 'error');
@@ -156,4 +158,48 @@ function statusColor(v) {
 
 function priorityLabel(v) {
   return { '1': '1 — Crítica', '2': '2 — Alta', '3': '3 — Média', '4': '4 — Baixa', '5': '5 — Muito Baixa', 'na': 'N/A' }[v] || v;
+}
+
+// ── Tickets Recentes ──────────────────────────────────────
+function renderRecentTickets(tickets) {
+  const container = document.getElementById('recent-tickets-list');
+  if (!container) return;
+
+  if (!tickets.length) {
+    container.innerHTML = '<p style="color:var(--muted)">Nenhum ticket nos últimos 7 dias.</p>';
+    return;
+  }
+
+  const rows = tickets.map(t => `
+    <tr>
+      <td><strong>${escapeHtml(t.ciName || '—')}</strong></td>
+      <td style="color:var(--muted);font-size:.85rem">${escapeHtml(t.ciCat || '—')}</td>
+      <td>${statusLabel(String(t.status || '').toLowerCase())}</td>
+      <td style="text-align:center">${t.priority || '—'}</td>
+      <td style="font-size:.8rem;color:var(--muted)">${formatDate(t.openTime)}</td>
+    </tr>
+  `).join('');
+
+  container.innerHTML = `
+    <div style="overflow-x:auto">
+      <table class="tickets-table">
+        <thead>
+          <tr>
+            <th>CI Name</th>
+            <th>Categoria</th>
+            <th>Estado</th>
+            <th>Prioridade</th>
+            <th>Data Abertura</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:.8rem;margin-top:.5rem">${tickets.length} ticket(s) nos últimos 7 dias.</p>
+  `;
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }

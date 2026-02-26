@@ -99,3 +99,16 @@ export async function getStatsByPriority() {
 export async function getStatsByCiCat() {
   return request('/tickets/stats/by-ciCat');
 }
+
+/**
+ * Obter tickets criados nos últimos N dias.
+ * @param {number} days - Número de dias (default: 7)
+ */
+export async function getRecentTickets(days = 7) {
+  // Reutiliza o endpoint existente com limite alto e filtra por data no cliente
+  const data = await getTickets({ limit: 200, offset: 0 });
+  const tickets = data.tickets || [];
+  const since = new Date();
+  since.setDate(since.getDate() - days);
+  return tickets.filter(t => t.openTime && new Date(t.openTime) >= since);
+}
