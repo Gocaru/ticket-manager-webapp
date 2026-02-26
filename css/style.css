@@ -4,53 +4,11 @@
    Acessibilidade: WCAG 2.1 AA (contraste ≥4.5:1, fontes ≥16px)
    ============================================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
 /* ============================================================
    VARIÁVEIS CSS
    ============================================================ */
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../assets/fonts/PlusJakartaSans-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../assets/fonts/PlusJakartaSans-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../assets/fonts/PlusJakartaSans-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('../assets/fonts/PlusJakartaSans-ExtraBold.ttf') format('truetype');
-  font-weight: 800;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('../assets/fonts/AtkinsonHyperlegible-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('../assets/fonts/AtkinsonHyperlegible-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-display: swap;
-}
-
-
 :root {
   /* Cores base — fundo escuro com contraste WCAG AAA */
   --bg:       #0d0f14;   /* fundo principal */
@@ -91,8 +49,8 @@
   /* Tipografia */
   /* Atkinson Hyperlegible: criada pelo Braille Institute para máxima legibilidade */
   /* Plus Jakarta Sans: sans-serif moderna com excelente distinção entre caracteres */
---font-body:  'Plus Jakarta Sans', sans-serif;
---font-mono:  'Atkinson Hyperlegible', sans-serif;
+  --font-body:  'Plus Jakarta Sans', sans-serif;
+  --font-mono:  'Atkinson Hyperlegible', sans-serif;
 }
 
 /* Tema claro — contraste WCAG AA/AAA */
@@ -157,7 +115,7 @@ img, svg {
 .navbar {
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 0 1.3rem;
+  padding: 0 1.25rem;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -174,7 +132,7 @@ img, svg {
   align-items: center;
   gap: .5rem;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 800;
   color: var(--text);
   letter-spacing: -.5px;
@@ -434,7 +392,7 @@ textarea.invalid {
   display: flex;
   flex-direction: column;
   gap: .75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: .5rem;
 }
 
 .page-header__sub {
@@ -714,21 +672,16 @@ textarea.invalid {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem 1rem;
+  padding: .85rem .75rem;
   text-align: center;
   transition: border-color var(--transition), transform .15s;
 }
 
-.stat-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
-
 .stat-card__value {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 800;
   line-height: 1;
-  margin-bottom: .3rem;
+  margin-bottom: .2rem;
 }
 
 .stat-card__label {
@@ -791,7 +744,7 @@ textarea.invalid {
 .charts-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
   margin-top: 1rem;
 }
 
@@ -799,16 +752,16 @@ textarea.invalid {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem;
+  padding: .75rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: .5rem;
 }
 
 .chart-card canvas {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 130px;
+  max-height: 130px;
 }
 
 .chart-card h3 {
@@ -848,8 +801,6 @@ textarea.invalid {
 /* ============================================================
    ABOUT PAGE
    ============================================================ */
-.about-section { margin-bottom: 2rem; }
-
 /* ---------- Tabs ---------- */
 .tabs {
   display: flex;
@@ -976,12 +927,6 @@ textarea.invalid {
 
 .member-name  { font-weight: 700; font-size: .92rem; }
 .member-role  { color: var(--muted); font-size: .75rem; font-family: var(--font-mono); }
-.member-number {
-  color: var(--accent);
-  font-size: .72rem;
-  font-family: var(--font-mono);
-}
-
 
 /* Tags de tecnologias */
 .tech-tags {
@@ -1017,7 +962,7 @@ textarea.invalid {
 /* ============================================================
    UTILITÁRIOS
    ============================================================ */
-.divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+.divider { border: none; border-top: 1px solid var(--border); margin: .75rem 0; }
 
 .text-accent  { color: var(--accent); }
 .text-muted   { color: var(--muted); }
@@ -1035,18 +980,6 @@ textarea.invalid {
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border: 0;
-}
-
-/* ============================================================
-   PAGINAÇÃO
-   ============================================================ */
-.pagination {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
-  padding-bottom: 1rem;
 }
 
 /* ============================================================
@@ -1080,7 +1013,7 @@ textarea.invalid {
   }
 
   .filters-bar select { width: auto; min-width: 130px; }
-  .filters-bar .btn { align-self: flex-end; min-width: 90px; justify-content: center; }
+  .filters-bar .btn { align-self: flex-end; min-width: 80px; justify-content: center; }
 
 .filters-bar__actions {
   display: flex;
