@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TicketOS — Dashboard de estatísticas de tickets de suporte IT." />
+  <link rel="icon" href="favicon.ico" />
   <title>Estatísticas — TicketOS</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Navegação principal">
     <a href="index.html" class="navbar__brand">
       <span class="dot"></span>
       TicketOS
@@ -19,7 +21,7 @@
       <li><a href="stats.html">Estatísticas</a></li>
       <li><a href="about.html">Sobre</a></li>
       <li>
-        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Alternar tema">
+        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Alternar tema" type="button">
           ☀️
         </button>
       </li>
@@ -27,15 +29,18 @@
   </nav>
 
   <main>
-    <div class="page-header">
+
+    <!-- Cabeçalho da página -->
+    <header class="page-header">
       <div>
         <h1>Estatísticas</h1>
         <p class="page-header__sub">Dashboard de indicadores em tempo real</p>
       </div>
-      <button class="btn btn--ghost" id="btn-refresh">↺ Atualizar</button>
-    </div>
+      <button type="button" class="btn btn--ghost" id="btn-refresh">↺ Atualizar</button>
+    </header>
 
-    <section class="about-section">
+    <!-- Resumo geral -->
+    <section class="about-section" id="section-summary">
       <h2>Resumo Geral</h2>
       <div class="stats-grid" id="summary-cards">
         <div class="loading"><div class="spinner"></div><span>A carregar...</span></div>
@@ -44,26 +49,45 @@
 
     <hr class="divider" />
 
-    <section class="about-section">
+    <!-- Gráficos de distribuição -->
+    <section class="about-section" id="section-charts">
       <h2>Distribuição</h2>
       <div class="charts-grid">
         <div class="chart-card">
           <h3>Por Estado</h3>
-          <canvas id="chart-status" width="200" height="200"></canvas>
+          <canvas id="chart-status" width="200" height="200"
+            role="img"
+            aria-label="Gráfico de tickets por estado"></canvas>
           <ul class="chart-legend" id="legend-status"></ul>
         </div>
         <div class="chart-card">
           <h3>Por Prioridade</h3>
-          <canvas id="chart-priority" width="200" height="200"></canvas>
+          <canvas id="chart-priority" width="200" height="200"
+            role="img"
+            aria-label="Gráfico de tickets por prioridade"></canvas>
           <ul class="chart-legend" id="legend-priority"></ul>
         </div>
         <div class="chart-card">
           <h3>Por Categoria CI</h3>
-          <canvas id="chart-cicat" width="200" height="200"></canvas>
+          <canvas id="chart-cicat" width="200" height="200"
+            role="img"
+            aria-label="Gráfico de tickets por categoria CI"></canvas>
           <ul class="chart-legend" id="legend-cicat"></ul>
         </div>
       </div>
     </section>
+
+    <hr class="divider" />
+
+    <!-- Tickets recentes (3.º GET distinto — requisito do enunciado) -->
+    <section class="about-section" id="section-recent">
+      <h2>Tickets Recentes</h2>
+      <p class="page-header__sub">Últimos 7 dias</p>
+      <div id="recent-tickets-list">
+        <div class="loading"><div class="spinner"></div><span>A carregar...</span></div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -72,5 +96,6 @@
 
   <script src="js/theme.js"></script>
   <script type="module" src="js/stats.js"></script>
+
 </body>
 </html>

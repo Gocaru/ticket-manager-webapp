@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TicketOS — Sobre o projeto e equipa de desenvolvimento." />
+  <link rel="icon" href="favicon.ico" />
   <title>Sobre — TicketOS</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Navegação principal">
     <a href="index.html" class="navbar__brand">
       <span class="dot"></span>
       TicketOS
@@ -19,7 +21,7 @@
       <li><a href="stats.html">Estatísticas</a></li>
       <li><a href="about.html">Sobre</a></li>
       <li>
-        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Alternar tema">
+        <button id="theme-toggle" class="btn btn--ghost btn--sm" aria-label="Alternar tema" type="button">
           ☀️
         </button>
       </li>
@@ -28,48 +30,59 @@
 
   <main>
 
-    <div class="page-header">
+    <!-- Cabeçalho da página -->
+    <header class="page-header">
       <div>
         <h1>Sobre o Projeto</h1>
         <p class="page-header__sub">TicketOS — Módulo 10 · Projeto Final</p>
       </div>
-    </div>
+    </header>
 
     <!-- Grupo & Membros -->
     <section class="about-section card">
       <h2>👥 Grupo e Membros</h2>
       <div class="members-grid">
-        <div class="member-card">
-          <div class="member-avatar">GR</div>
-          <div class="member-name">Gonçalo Russo</div>
-          <div class="member-role">Backend & API</div>
-        </div>
-        <div class="member-card">
-          <div class="member-avatar" style="background:var(--accent2)">LS</div>
-          <div class="member-name">Larissa Silva</div>
-          <div class="member-role">Frontend & UI</div>
-        </div>
-        <div class="member-card">
-          <div class="member-avatar" style="background:var(--success)">FV</div>
-          <div class="member-name">Filipa Veiga</div>
-          <div class="member-role">Base de Dados & Testes</div>
-        </div>
-        <div class="member-card">
-          <div class="member-avatar" style="background:var(--warning);color:#111">FN</div>
-          <div class="member-name">Filipe Nunes</div>
-          <div class="member-role">Integração & Webhooks</div>
-        </div>
+
+        <article class="member-card">
+          <div class="member-avatar" aria-hidden="true">GR</div>
+          <h3 class="member-name">Gonçalo Russo</h3>
+          <p class="member-number">UpSkill 259</p>
+          <p class="member-role">Backend &amp; API</p>
+        </article>
+
+        <article class="member-card">
+          <div class="member-avatar" style="background:var(--accent2)" aria-hidden="true">LS</div>
+          <h3 class="member-name">Larissa Silva</h3>
+          <p class="member-number">UpSkill 250</p>
+          <p class="member-role">Frontend &amp; UI</p>
+        </article>
+
+        <article class="member-card">
+          <div class="member-avatar" style="background:var(--success)" aria-hidden="true">FV</div>
+          <h3 class="member-name">Filipa Veiga</h3>
+          <p class="member-number">UpSkill 257</p>
+          <p class="member-role">Base de Dados &amp; Testes</p>
+        </article>
+
+        <article class="member-card">
+          <div class="member-avatar" style="background:var(--warning);color:#111" aria-hidden="true">FN</div>
+          <h3 class="member-name">Filipe Nunes</h3>
+          <p class="member-number">UpSkill 255</p>
+          <p class="member-role">Integração &amp; Webhooks</p>
+        </article>
+
       </div>
     </section>
 
     <hr class="divider" />
 
+    <!-- Sobre o projeto -->
     <section class="about-section card">
       <h2>📋 Sobre o Projeto</h2>
       <p style="color:var(--muted);line-height:1.8">
         O <strong style="color:var(--text)">TicketOS</strong> é uma aplicação web de gestão de tickets de suporte IT,
         desenvolvida no âmbito do <strong style="color:var(--text)">Módulo 10 — Projeto Final</strong> do programa
-        UPskill / Digital SKILLS & JOBS da Faculdade de Ciências da Universidade de Lisboa.
+        UPskill / Digital SKILLS &amp; JOBS da Faculdade de Ciências da Universidade de Lisboa.
       </p>
       <p style="color:var(--muted);line-height:1.8;margin-top:.8rem">
         A aplicação permite criar, visualizar, editar e arquivar tickets de suporte,
@@ -80,6 +93,7 @@
 
     <hr class="divider" />
 
+    <!-- Tecnologias -->
     <section class="about-section card">
       <h2>🛠 Tecnologias Utilizadas</h2>
       <ul class="tech-tags" style="margin-top:.5rem">
@@ -93,12 +107,12 @@
         <li class="tech-tag">SQLite</li>
         <li class="tech-tag">REST API</li>
         <li class="tech-tag">Canvas API (gráficos)</li>
-        <li class="tech-tag">Google Fonts</li>
       </ul>
     </section>
 
     <hr class="divider" />
 
+    <!-- Dificuldades -->
     <section class="about-section card">
       <h2>⚠ Dificuldades Sentidas</h2>
       <ul style="list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem">
@@ -141,5 +155,6 @@
 
   <script src="js/theme.js"></script>
   <script type="module" src="js/about.js"></script>
+
 </body>
 </html>

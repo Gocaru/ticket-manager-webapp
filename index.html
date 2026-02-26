@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="TicketOS — Gestão centralizada de tickets de suporte IT." />
+    <link rel="icon" href="favicon.ico">
     <title>Gestor de Tickets</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <nav class="navbar">
+
+    <nav class="navbar" aria-label="Navegação principal">
       <a href="index.html" class="navbar__brand">
         <span class="dot"></span>
         TicketOS
@@ -24,6 +27,7 @@
             id="theme-toggle"
             class="btn btn--ghost btn--sm"
             aria-label="Alternar tema"
+            type="button"
           >
             ☀️
           </button>
@@ -32,20 +36,23 @@
     </nav>
 
     <main>
-      <div class="page-header">
+
+      <!-- Cabeçalho da página -->
+      <header class="page-header">
         <div>
           <h1>Gestor de Tickets</h1>
           <p class="page-header__sub">Gestão centralizada de incidências</p>
         </div>
-        <button class="btn btn--primary" id="btn-new-ticket">
+        <button class="btn btn--primary" id="btn-new-ticket" type="button">
           + Novo Ticket
         </button>
-      </div>
+      </header>
 
-      <div class="filters-bar">
+      <!-- Formulário de filtros -->
+      <form class="filters-bar" id="form-filters" role="search" aria-label="Filtrar tickets">
         <div class="form-group" style="margin: 0">
           <label for="filter-status">Estado</label>
-          <select id="filter-status">
+          <select id="filter-status" name="status">
             <option value="">Todos</option>
             <option value="open">Aberto</option>
             <option value="in_progress">Em Progresso</option>
@@ -54,7 +61,7 @@
         </div>
         <div class="form-group" style="margin: 0">
           <label for="filter-priority">Prioridade</label>
-          <select id="filter-priority">
+          <select id="filter-priority" name="priority">
             <option value="">Todas</option>
             <option value="1">Crítica</option>
             <option value="2">Alta</option>
@@ -64,13 +71,14 @@
           </select>
         </div>
         <div class="filters-bar__actions">
-          <button class="btn btn--primary" id="btn-filter">Filtrar</button>
-          <button class="btn btn--ghost" id="btn-reset">
-            <span style="font-size: 1.3rem; line-height: 1; display: inline-block" >↺</span>Limpar
+          <button class="btn btn--primary" id="btn-filter" type="submit">Filtrar</button>
+          <button class="btn btn--ghost" id="btn-reset" type="reset">
+            <span style="font-size: 1.3rem; line-height: 1; display: inline-block">↺</span>Limpar
           </button>
         </div>
-      </div>
+      </form>
 
+      <!-- Lista de tickets -->
       <div id="tickets-container">
         <div class="loading">
           <div class="spinner"></div>
@@ -78,16 +86,12 @@
         </div>
       </div>
 
-      <div
-        id="pagination"
-        style="
-          display: flex;
-          gap: 0.5rem;
-          justify-content: center;
-          margin-top: 1.5rem;
-          flex-wrap: wrap;
-        "
-      ></div>
+      <!-- Paginação -->
+      <nav id="pagination" class="pagination" aria-label="Paginação"></nav>
+
+      <!-- Feedback ao utilizador (mensagens de sucesso/erro) -->
+      <div id="toast-container" role="alert" aria-live="polite" aria-atomic="true"></div>
+
     </main>
 
     <footer>
@@ -97,13 +101,79 @@
       </p>
     </footer>
 
-    <div id="ticket-modal-container"></div>
+    <!-- Modal: Criar / Editar Ticket -->
+    <dialog id="ticket-modal" aria-labelledby="modal-title" aria-modal="true">
+      <form id="ticket-form" novalidate>
+        <h2 id="modal-title">Novo Ticket</h2>
+
+        <div class="form-group">
+          <label for="ticket-title">Título <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="ticket-title"
+            name="title"
+            required
+            minlength="3"
+            maxlength="100"
+            placeholder="Título do ticket"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="ticket-desc">Descrição</label>
+          <textarea
+            id="ticket-desc"
+            name="description"
+            rows="4"
+            maxlength="500"
+            placeholder="Descreva o problema..."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="ticket-priority">Prioridade</label>
+          <select id="ticket-priority" name="priority_id" required>
+            <option value="">-- Selecionar --</option>
+            <option value="1">Crítica</option>
+            <option value="2">Alta</option>
+            <option value="3">Média</option>
+            <option value="4">Baixa</option>
+            <option value="5">Muito Baixa</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ticket-status">Estado</label>
+          <select id="ticket-status" name="status" required>
+            <option value="open">Aberto</option>
+            <option value="in_progress">Em Progresso</option>
+            <option value="closed">Fechado</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn btn--primary" id="btn-modal-save">Guardar</button>
+          <button type="button" class="btn btn--ghost" id="btn-modal-cancel">Cancelar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Modal: Confirmação de Eliminação -->
+    <dialog id="confirm-modal" aria-labelledby="confirm-title" aria-modal="true">
+      <h2 id="confirm-title">Confirmar Eliminação</h2>
+      <p id="confirm-message">Tem a certeza que pretende eliminar este ticket?</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn--danger" id="btn-confirm-delete">Eliminar</button>
+        <button type="button" class="btn btn--ghost" id="btn-confirm-cancel">Cancelar</button>
+      </div>
+    </dialog>
 
     <script src="js/theme.js"></script>
     <script type="module" src="js/index.js"></script>
     <script>
-      document.getElementById("footer-year").textContent =
-        new Date().getFullYear();
+      document.getElementById("footer-year").textContent = new Date().getFullYear();
     </script>
+
   </body>
 </html>
