@@ -1,39 +1,32 @@
-/* ============================================================
-   GESTOR DE TICKETS — ESTILOS GLOBAIS
-   Mobile-first | Responsivo para iPhone 14 Pro Max & Desktop
-   Acessibilidade: WCAG 2.1 AA (contraste ≥4.5:1, fontes ≥16px)
-   ============================================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
 
 /* ============================================================
    VARIÁVEIS CSS
    ============================================================ */
 :root {
-  /* Cores base — fundo escuro com contraste WCAG AAA */
-  --bg:       #0d0f14;   /* fundo principal */
-  --surface:  #161b27;   /* cards e navbar */
-  --surface2: #1f2535;   /* inputs e hover */
-  --border:   #2e3650;   /* bordas visíveis (contraste ≥3:1 sobre surface) */
+  
+  --bg:       #0d0f14;   
+  --surface:  #161b27;   
+  --surface2: #1f2535;   
+  --border:   #2e3650;   
 
-  /* Cores de destaque — todas com contraste ≥4.5:1 sobre fundos escuros */
-  --accent:   #6b9fff;   /* azul mais claro → contraste ~5.5:1 sobre #161b27 */
-  --accent2:  #f472b6;   /* rosa mais claro → contraste ~5:1 */
-  --success:  #4ade80;   /* verde mais claro → contraste ~6:1 */
-  --warning:  #fbbf24;   /* âmbar → contraste ~7:1 */
-  --danger:   #f87171;   /* vermelho mais claro → contraste ~5.5:1 */
+  
+  --accent:   #6b9fff;   
+  --accent2:  #f472b6;   
+  --success:  #4ade80;   
+  --warning:  #fbbf24;   
+  --danger:   #f87171;   
 
-  /* Texto — contraste máximo */
-  --text:     #f1f3f9;   /* branco suave → contraste ~16:1 sobre --bg */
-  --muted:    #8b95b0;   /* cinza médio → contraste ≥4.5:1 sobre --bg */
+  /*Texto — contraste máximo */
+  --text:     #f1f3f9;   
+  --muted:    #8b95b0;   
 
-  /* Status — ajustados para contraste ≥4.5:1 */
-  --total:      #a78bfa;   /* violeta */
-  --open:       #4ade80;   /* verde */
-  --inprogress: #6b9fff;   /* azul */
-  --closed:     #8b95b0;   /* cinza */
+  /*Status —*/
+  --total:      #a78bfa;   
+  --open:       #4ade80;   
+  --inprogress: #6b9fff;   
+  --closed:     #8b95b0;   
 
-  /* Prioridade — ajustados para contraste ≥4.5:1 */
+  /* Prioridade — */
   --low:      #4ade80;
   --medium:   #fbbf24;
   --high:     #fb923c;
@@ -47,26 +40,25 @@
   --transition:  .2s ease;
 
   /* Tipografia */
-  /* Atkinson Hyperlegible: criada pelo Braille Institute para máxima legibilidade */
-  /* Plus Jakarta Sans: sans-serif moderna com excelente distinção entre caracteres */
+
   --font-body:  'Plus Jakarta Sans', sans-serif;
   --font-mono:  'Atkinson Hyperlegible', sans-serif;
 }
 
 /* Tema claro — contraste WCAG AA/AAA */
 body.light-mode {
-  --bg:       #f5f0eb;   /* bege/creme */
-  --surface:  #faf7f3;   /* bege mais claro — cards e navbar */
-  --surface2: #ede8e1;   /* bege médio — hover e inputs */
-  --border:   #d4cdc4;   /* bege escuro — bordas */
-  --text:     #0f1623;   /* quase preto → contraste ~18:1 sobre --bg */
-  --muted:    #4a5568;   /* cinza escuro → contraste ≥7:1 sobre --bg */
-  --accent:   #1d4ed8;   /* azul escuro → contraste ~8:1 sobre branco */
-  --accent2:  #be185d;   /* rosa escuro → contraste ~7:1 */
-  --success:  #166534;   /* verde escuro → contraste ~8:1 */
-  --warning:  #92400e;   /* âmbar escuro → contraste ~8:1 */
-  --danger:   #991b1b;   /* vermelho escuro → contraste ~8:1 */
-  --total:      #0e7490;   /* ciano escuro → claramente distinto de azul, verde e cinza */
+  --bg:       #f5f0eb;   
+  --surface:  #faf7f3;   
+  --surface2: #ede8e1;   
+  --border:   #d4cdc4;   
+  --text:     #0f1623;   
+  --muted:    #4a5568;   
+  --accent:   #1d4ed8;   
+  --accent2:  #be185d;   
+  --success:  #166534;   
+  --warning:  #92400e;   
+  --danger:   #991b1b;   
+  --total:      #0e7490;   
   --open:       #166534;
   --inprogress: #1d4ed8;
   --closed:     #4a5568;
@@ -89,7 +81,7 @@ body.light-mode {
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px; /* base rem */
+  font-size: 16px; 
 }
 
 body {
@@ -99,7 +91,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-size: 1rem;        /* 16px — mínimo recomendado WCAG */
+  font-size: 1rem;        
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -235,7 +227,7 @@ footer p { margin: 0; }
    ============================================================ */
 h1, h2, h3 {
   font-weight: 800;
-  letter-spacing: -.3px;  /* menos comprimido que antes → mais legível */
+  letter-spacing: -.3px;  
   line-height: 1.25;
 }
 
@@ -244,7 +236,7 @@ h1 { font-size: 1.6rem;  margin-bottom: .5rem; }
 h2 { font-size: 1.25rem; margin-bottom: 1rem; }
 h3 { font-size: 1.05rem; }
 
-p  { margin-bottom: .75rem; line-height: 1.7; } /* line-height generoso para dislexia */
+p  { margin-bottom: .75rem; line-height: 1.7; } 
 
 /* ============================================================
    BOTÕES
@@ -595,7 +587,7 @@ textarea.invalid {
   background: rgba(0, 0, 0, .65);
   z-index: 200;
   display: flex;
-  align-items: flex-end;   /* slide de baixo em mobile */
+  align-items: flex-end;   
   justify-content: center;
   padding: 0;
   backdrop-filter: blur(4px);
@@ -738,6 +730,15 @@ textarea.invalid {
   height: 100%;
   border-radius: 3px;
   transition: width .6s ease;
+}
+
+/* Paginação */
+.pagination {
+  display: flex;
+  gap: .5rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 /* Gráficos */
