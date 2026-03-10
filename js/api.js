@@ -1,12 +1,15 @@
-/**
- * api.js — Camada de comunicação com a API REST
- * Base URL configurável via constante.
- */
+// js/api.js — Camada de comunicação com a API REST
+// Base URL configurável via constante.
+
+import { getAccessToken, refreshAccessToken } from './auth.js';
 
 const API_BASE = 'http://localhost:3000/api';
 
 /**
  * Wrapper genérico de fetch com tratamento de erros.
+ * Adiciona automaticamente o header Authorization com o token JWT.
+ * Se receber 401, tenta fazer refresh e repete o pedido uma vez.
+ *
  * @param {string} endpoint  - Caminho relativo (ex: '/tickets')
  * @param {object} options   - Opções do fetch (method, body, etc.)
  * @returns {Promise<any>}   - JSON parsed da resposta
@@ -14,16 +17,35 @@ const API_BASE = 'http://localhost:3000/api';
 async function request(endpoint, options = {}) {
   const url = `${API_BASE}${endpoint}`;
 
+  const token = await getAccessToken();
+
   const config = {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    credentials: 'include', // necessário para enviar o cookie do refresh token
     ...options,
   };
 
-  const response = await fetch(url, config);
+  let response = await fetch(url, config);
+
+  // Se o token expirou, tenta refresh e repete o pedido uma vez
+  if (response.status === 401) {
+    const refreshed = await refreshAccessToken();
+    if (refreshed) {
+      const newToken = await getAccessToken();
+      config.headers.Authorization = `Bearer ${newToken}`;
+      response = await fetch(url, config);
+    } else {
+      window.location.href = '/login.html';
+      return;
+    }
+  }
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
-    const message = errorData.message || `Erro HTTP ${response.status}`;
+    const message = errorData.message || errorData.error || `Erro HTTP ${response.status}`;
     throw new Error(message);
   }
 
@@ -105,7 +127,6 @@ export async function getStatsByCiCat() {
  * @param {number} days - Número de dias (default: 7)
  */
 export async function getRecentTickets(days = 7) {
-  // Reutiliza o endpoint existente com limite alto e filtra por data no cliente
   const data = await getTickets({ limit: 200, offset: 0 });
   const tickets = data.tickets || [];
   const since = new Date();

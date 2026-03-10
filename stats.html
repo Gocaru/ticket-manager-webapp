@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
   <nav class="navbar" aria-label="Navegação principal">
     <a href="index.html" class="navbar__brand">
       <span class="dot"></span>
@@ -25,11 +24,17 @@
           ☀️
         </button>
       </li>
+      <li>
+        <span id="user-info" style="font-size:.85rem;color:var(--muted);padding:0 .5rem;"></span>
+      </li>
+      <li>
+        <button id="btn-logout" class="btn btn--ghost btn--sm" type="button">
+          Sair
+        </button>
+      </li>
     </ul>
   </nav>
-
   <main>
-
     <!-- Cabeçalho da página -->
     <header class="page-header">
       <div>
@@ -38,7 +43,6 @@
       </div>
       <button type="button" class="btn btn--ghost" id="btn-refresh">↺ Atualizar</button>
     </header>
-
     <!-- Resumo geral -->
     <section class="about-section" id="section-summary">
       <h2>Resumo Geral</h2>
@@ -46,9 +50,7 @@
         <div class="loading"><div class="spinner"></div><span>A carregar...</span></div>
       </div>
     </section>
-
     <hr class="divider" />
-
     <!-- Gráficos de distribuição -->
     <section class="about-section" id="section-charts">
       <h2>Distribuição</h2>
@@ -76,9 +78,7 @@
         </div>
       </div>
     </section>
-
     <hr class="divider" />
-
     <!-- Tickets recentes (3.º GET distinto — requisito do enunciado) -->
     <section class="about-section" id="section-recent">
       <h2>Tickets Recentes</h2>
@@ -87,15 +87,11 @@
         <div class="loading"><div class="spinner"></div><span>A carregar...</span></div>
       </div>
     </section>
-
   </main>
-
   <footer>
     <p>© 2025/2026 UPskill — Faculdade de Ciências · Módulo 10 Projeto Final</p>
   </footer>
-
   <script src="js/theme.js"></script>
   <script type="module" src="js/stats.js"></script>
-
 </body>
 </html>

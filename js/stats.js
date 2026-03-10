@@ -4,13 +4,48 @@
 
 import { getStatsByStatus, getStatsByPriority, getStatsByCiCat, getRecentTickets } from './api.js';
 import { showToast, setNavActive, initNavbarToggle, formatDate } from './ui.js';
+import { requireAuth, getCurrentUser, hasRole, logout } from './auth.js';
 
 const PALETTE = [
   '#E69F00', '#56B4E9', '#009E73', '#F0E442',
   '#0072B2', '#D55E00', '#CC79A7', '#000000',
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Verificar autenticação — redireciona para login.html se não autenticado
+  const authenticated = await requireAuth();
+  if (!authenticated) return;
+
+  // Verificar permissão — só agents e admins podem ver stats
+  if (!hasRole('agent', 'admin')) {
+    document.querySelector('main').innerHTML = `
+      <div style="text-align:center;padding:4rem 2rem">
+        <h2 style="color:var(--danger)">🚫 Acesso Negado</h2>
+        <p style="color:var(--muted);margin-top:1rem">
+          Não tens permissão para ver as estatísticas.<br>
+          Apenas agents e admins têm acesso a esta página.
+        </p>
+        <a href="index.html" class="btn btn--primary" style="margin-top:1.5rem;display:inline-block">
+          ← Voltar aos Tickets
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  // Mostrar nome e role do utilizador na navbar
+  const user = getCurrentUser();
+  const userInfo = document.getElementById('user-info');
+  if (userInfo && user) {
+    userInfo.textContent = `${user.username} (${user.role})`;
+  }
+
+  // Botão logout
+  const btnLogout = document.getElementById('btn-logout');
+  if (btnLogout) {
+    btnLogout.addEventListener('click', logout);
+  }
+
   setNavActive();
   initNavbarToggle();
   loadAll();
@@ -150,9 +185,9 @@ function statusLabel(v) {
 
 function statusColor(v) {
   return {
-    open:        '#009E73', // verde esmeralda
-    in_progress: '#0072B2', // azul escuro
-    closed:      '#D55E00', // laranja avermelhado
+    open:        '#009E73',
+    in_progress: '#0072B2',
+    closed:      '#D55E00',
   }[v] || '#56B4E9';
 }
 

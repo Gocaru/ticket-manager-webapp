@@ -5,6 +5,7 @@
 
 import { getTickets, createTicket, updateTicket, deleteTicket, getTicketById } from './api.js';
 import { showToast, showLoading, showEmpty, statusBadge, formatDate, openModal, closeModal, setNavActive, initNavbarToggle } from './ui.js';
+import { requireAuth, getCurrentUser, hasRole, logout } from './auth.js';
 
 let currentFilters = {};
 let currentOffset = 0;
@@ -27,7 +28,15 @@ function calcLimit() {
 let LIMIT = calcLimit();
 
 function bindEvents() {
-  document.getElementById('btn-new-ticket').addEventListener('click', () => openTicketModal(null));
+  const btnNew = document.getElementById('btn-new-ticket');
+  if (btnNew) {
+    if (hasRole('agent', 'admin')) {
+      btnNew.addEventListener('click', () => openTicketModal(null));
+    } else {
+      btnNew.style.display = 'none';
+    }
+  }
+
   document.getElementById('btn-filter').addEventListener('click', applyFilters);
   document.getElementById('btn-reset').addEventListener('click', resetFilters);
   document.getElementById('btn-archived').addEventListener('click', () => {
@@ -36,6 +45,11 @@ function bindEvents() {
     document.getElementById('filter-priority').value = '';
     loadTickets(currentFilters, 0);
   });
+
+  const btnLogout = document.getElementById('btn-logout');
+  if (btnLogout) {
+    btnLogout.addEventListener('click', logout);
+  }
 
   window.addEventListener('resize', () => {
     const newLimit = calcLimit();
@@ -46,7 +60,16 @@ function bindEvents() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  const authenticated = await requireAuth();
+  if (!authenticated) return;
+
+  const user = getCurrentUser();
+  const userInfo = document.getElementById('user-info');
+  if (userInfo && user) {
+    userInfo.textContent = `${user.username} (${user.role})`;
+  }
+
   setNavActive();
   initNavbarToggle();
   loadTickets();
@@ -101,6 +124,9 @@ function renderTickets(container, tickets) {
 function createRow(ticket, isArchived = false) {
   const status = String(ticket.status || '').toLowerCase();
 
+  const canEdit   = hasRole('agent', 'admin', 'user');
+  const canDelete = hasRole('agent', 'admin');
+
   const tr = document.createElement('tr');
   tr.innerHTML = `
     <td><strong>${escapeHtml(ticket.ciName || '—')}</strong></td>
@@ -112,15 +138,17 @@ function createRow(ticket, isArchived = false) {
     <td style="text-align:center">${ticket.urgency || '—'}</td>
     <td style="font-size:.8rem;color:var(--muted);white-space:nowrap">${formatDate(ticket.openTime)}</td>
     <td>
-      ${!isArchived ? `<div style="display:flex;gap:.4rem">
-        <button class="btn btn--warning btn--sm btn-edit"   data-id="${ticket.id}" title="Editar">✏</button>
-        <button class="btn btn--danger  btn--sm btn-delete" data-id="${ticket.id}" title="Apagar">✕</button>
-      </div>` : '<span style="color:var(--muted);font-size:.8rem">arquivado</span>'}
+      ${!isArchived && canEdit ? `<div style="display:flex;gap:.4rem">
+        <button class="btn btn--warning btn--sm btn-edit" data-id="${ticket.id}" title="Editar">✏</button>
+        ${canDelete ? `<button class="btn btn--danger btn--sm btn-delete" data-id="${ticket.id}" title="Apagar">✕</button>` : ''}
+      </div>` : `<span style="color:var(--muted);font-size:.8rem">${isArchived ? 'arquivado' : '—'}</span>`}
     </td>
   `;
-  if (!isArchived) {
+  if (!isArchived && canEdit) {
     tr.querySelector('.btn-edit').addEventListener('click', () => handleEdit(ticket.id));
-    tr.querySelector('.btn-delete').addEventListener('click', () => handleDelete(ticket.id, tr));
+    if (canDelete) {
+      tr.querySelector('.btn-delete').addEventListener('click', () => handleDelete(ticket.id, tr));
+    }
   }
   return tr;
 }

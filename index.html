@@ -29,6 +29,14 @@
           ☀️
         </button>
       </li>
+      <li>
+        <span id="user-info" style="font-size:.85rem;color:var(--muted);padding:0 .5rem;"></span>
+      </li>
+      <li>
+        <button id="btn-logout" class="btn btn--ghost btn--sm" type="button">
+          Sair
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -40,7 +48,7 @@
         <h1>Gestor de Tickets</h1>
         <p class="page-header__sub">Gestão centralizada de incidências</p>
       </div>
-      <button class="btn btn--primary" id="btn-new-ticket" type="submit">
+      <button class="btn btn--primary" id="btn-new-ticket" type="button">
         + Novo Ticket
       </button>
     </header>
@@ -70,10 +78,10 @@
       <div class="filters-bar__actions">
         <button class="btn btn--primary" id="btn-filter" type="button"
           style="width:120px;justify-content:center">Filtrar</button>
-        <button class="btn btn--ghost" id="btn-reset" type="button" style="width:120px;justify-content:center">↺
-          Limpar</button>
-        <button class="btn btn--ghost" id="btn-archived" type="button" style="width:120px;justify-content:center">📦
-          Arquivados</button>
+        <button class="btn btn--ghost" id="btn-reset" type="button"
+          style="width:120px;justify-content:center">↺ Limpar</button>
+        <button class="btn btn--ghost" id="btn-archived" type="button"
+          style="width:120px;justify-content:center">📦 Arquivados</button>
       </div>
     </form>
 
